@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dpatronrnsdvr"]
+
+[node name="Indicator" type="Node2D"]

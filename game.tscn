@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://vxy08l51m36p"]
+
+[ext_resource type="Texture2D" uid="uid://b8g3ig81p4n2y" path="res://UI/Bullet/G00050000420.jpg" id="1_4lfnp"]
+[ext_resource type="PackedScene" uid="uid://b2lib37e0yb6u" path="res://player.tscn" id="1_xfl3g"]
+[ext_resource type="PackedScene" uid="uid://bs8h1dmn7qc72" path="res://planets.tscn" id="2_04is7"]
+[ext_resource type="Texture2D" uid="uid://cmqmi48k1vjiw" path="res://UI/Bullet/tunnel-tube-transparent-png.png" id="2_ndome"]
+[ext_resource type="PackedScene" uid="uid://b4cwr1nhrtwf3" path="res://planet_2.tscn" id="3_ouqrl"]
+[ext_resource type="AudioStream" uid="uid://clisf4httafqv" path="res://UI/Bullet/Untitled score.mp3" id="4_r4y3m"]
+[ext_resource type="Script" path="res://Camera.gd" id="5_a808u"]
+[ext_resource type="Script" path="res://HUD.gd" id="8_bxyj5"]
+
+[node name="Game" type="Node2D"]
+
+[node name="G00050000420" type="Sprite2D" parent="."]
+position = Vector2(539, 340)
+scale = Vector2(0.241322, 0.177173)
+texture = ExtResource("1_4lfnp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(573, 331)
+scale = Vector2(4.30712, 3.29)
+texture = ExtResource("2_ndome")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-131.875, -99.3921)
+scale = Vector2(0.232174, 0.303951)
+
+[node name="Player" parent="." instance=ExtResource("1_xfl3g")]
+
+[node name="planets_container" type="Node2D" parent="."]
+
+[node name="Planets" parent="planets_container" instance=ExtResource("2_04is7")]
+position = Vector2(151, 136)
+
+[node name="Planet2" parent="planets_container" instance=ExtResource("3_ouqrl")]
+position = Vector2(658, 53)
+
+[node name="Effect" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_r4y3m")
+autoplay = true
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("5_a808u")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_bxyj5")
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 124.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 30
+text = "Score"
+
+[node name="Time" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 1007.0
+offset_top = 11.0
+offset_right = 1078.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 30
+text = "Time"
+
+[node name="Timer" type="Timer" parent="HUD"]
+autostart = true
+
+[connection signal="timeout" from="HUD/Timer" to="HUD" method="_on_timer_timeout"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuaso7ls1bcsa"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_6p55q"]
+[ext_resource type="Texture2D" uid="uid://dep0qfru1v8fk" path="res://Spaceship Pack/ship_6.png" id="2_bwoux"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_74dxx"]
+radius = 20.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_6p55q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bwoux")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(6, -23.5, 6, -18.4, 7.7, -9, 11, -5, 12.2, -5, 20.2, -13, 22.8, -13, 24, -11.8, 24, 4.8, 20.3, 8.5, 24, 12.2, 24, 22, 19.4, 24, 17, 24, 17, 22.3, 10.5, 19, 9.1, 24, -10, 24, -10, 23.3, -11.6, 19.6, -19.5, 24, -23.8, 24, -24, 11.2, -21.3, 8.5, -24, 5.8, -24, -12, -22.5, -12, -11.9, -5.8, -9, -8, -9, -11.3, -5, -23.3, -5, -24, 4.3, -24)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_74dxx")
